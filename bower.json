@@ -1,0 +1,23 @@
+{
+  "name": "tagrhead",
+  "description": "A search bar with tags support integrated with typeahead",
+  "main": "lib/Tagrhead.js",
+  "authors": [
+    "Kev Lai"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "tag",
+    "typeahead",
+    "multiselect",
+    "search"
+  ],
+  "homepage": "https://github.com/kevguy/TagrHead",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

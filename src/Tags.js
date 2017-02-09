@@ -48,7 +48,7 @@ function _create(tag, attr) {
 
 class Tags {
   constructor(containerDivId, inputId) {
-
+    this.containerId = containerDivId;
     this.el = _create('input', {
       'id': 'tag-search-box',
       'type': 'text',
@@ -218,7 +218,7 @@ class Tags {
     }
     let tag = this.createTag(name);
 
-    this.wrap.insertBefore(tag, _$('.twitter-typeahead'));
+    this.wrap.insertBefore(tag, _$(this.containerId + ' .twitter-typeahead')[0]);
     this.tagsArray.push(name);
     this.field.value = '';
     this.el.value += (this.el.value === '') ? name : ',' + name;
