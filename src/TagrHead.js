@@ -4,8 +4,8 @@ import Rx from '../node_modules/rx/dist/rx.all.js';
 import Tags from './Tags';
 
 class Tagrhead {
-  constructor(containerDivId, el, dataSources) {
-    this.el = el || '#search-input';
+  constructor(dataSources, containerDivId = '#tagrhead-container', el = '#tagrhead-input') {
+    this.el = el;
     this.dataSources = dataSources;
     this.bloodHounds = new Map();
     this.typeaheadSrch = undefined;
