@@ -1,6 +1,6 @@
 {
   "name": "tagrhead",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A search bar with tags support integrated with typeahead",
   "main": "lib/Tagrhead.js",
   "dependencies": {
