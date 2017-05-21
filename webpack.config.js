@@ -5,9 +5,18 @@ const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const path = require('path');
 const env  = require('yargs').argv.env; // use --env with webpack 2
 
-let libraryName = 'Tagrhead';
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-let plugins = [], outputFile;
+// let libraryName = 'Tagrhead';
+let libraryName = '';
+
+let plugins = [
+  new ExtractTextPlugin({
+    filename: "/stylesheets/tagrhead.[name].css",
+    disable: false,
+    allChunks: true
+  })
+], outputFile;
 
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
@@ -17,12 +26,17 @@ if (env === 'build') {
 }
 
 const config = {
-  entry: './src/Tagrhead.js',
+  entry: {
+    Tagrhead: './src/Tagrhead.js',
+    basic: './src/stylesheets/basic.scss',
+    material: './src/stylesheets/material.scss'
+  },
   devtool: 'source-map',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: outputFile,
-    library: libraryName,
+    filename: '[name]' + outputFile,
+    // library: libraryName,
+    library: 'Tagrhead',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
@@ -37,6 +51,21 @@ const config = {
         test: /(\.jsx|\.js)$/,
         loader: 'eslint-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
+      },
+      {
+        test: /\.scss$|\.css$/,
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader?sourceMap&minimize', 'sass-loader?sourceMap'],
+          fallback: 'style-loader',
+          publicPath: 'dist'
+        })
       }
     ]
   },

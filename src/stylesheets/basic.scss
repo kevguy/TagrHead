@@ -1,0 +1,20 @@
+div {
+  &.tagrhead-suggestions, &.tagrhead-criterias {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid black;
+    position: absolute;
+  }
+  &.tagrhead-suggestions div, &.tagrhead-criterias div {
+    cursor: default;
+    padding: 0px 3px;
+  }
+  &.tagrhead-suggestions div.tagrhead-header, &.tagrhead-criterias div.tagrhead-criteria-header {
+    font-weight: 700;
+    border-top: 1px solid black;
+  }
+  &.tagrhead-suggestions div.tagrhead-current, &.tagrhead-criterias div.tagrhead-criteria-current {
+    background-color: #3366cc;
+    color: white;
+  }
+}

@@ -4,8 +4,7 @@
     box-sizing: inherit
 }
 
-input[type="search"],
-input[type="text"] {
+input.devsite-search-field {
     border: 1px solid #ebebeb;
     border-radius: 2px;
     color: #212121;
