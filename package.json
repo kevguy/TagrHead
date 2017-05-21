@@ -2,7 +2,7 @@
   "name": "tagrhead",
   "version": "1.0.4",
   "description": "A search bar with tags support integrated with typeahead",
-  "main": "lib/Tagrhead.js",
+  "main": "dist/Tagrhead.js",
   "devDependencies": {
     "babel-cli": "6.24.1",
     "babel-core": "6.24.1",
