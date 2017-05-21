@@ -29,7 +29,8 @@ const config = {
   entry: {
     Tagrhead: './src/Tagrhead.js',
     basic: './src/stylesheets/basic.scss',
-    material: './src/stylesheets/material.scss'
+    material: './src/stylesheets/material.scss',
+    mdl: './src/stylesheets/mdl.scss'
   },
   devtool: 'source-map',
   output: {
