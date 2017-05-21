@@ -1,0 +1,48 @@
+div.tagrhead-tags-container {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: auto;
+  max-width: 500px;
+  flex: 1 0 auto;
+}
+
+div.tagrhead-suggestions, div.tagrhead-criterias {
+    width: 100%;
+    position: absolute;
+    border: 1px solid rgba(0,0,0,.12);
+    border-bottom: 0px;
+    border-collapse: collapse;
+    white-space: nowrap;
+    font-size: 13px;
+    background-color: #fff;
+}
+
+div.tagrhead-suggestions div, div.tagrhead-criterias div {
+    cursor: default;
+    padding: 0px 3px;
+    height: 48px;
+    transition-duration: .28s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-property: background-color;
+    line-height: 48px;
+    vertical-align: middle;
+}
+
+div.tagrhead-suggestions div.tagrhead-header, div.tagrhead-criterias div.tagrhead-criteria-header {
+  border: 1px solid rgba(0,0,0,.12);
+  border-bottom: 0px;
+  height: 24px;
+  line-height: 24px;
+  font-weight: 700;
+  color: black
+}
+
+div.tagrhead-suggestions div.tagrhead-current, div.tagrhead-criterias div.tagrhead-criteria-current {
+    background-color: #eee;
+}
+
+div.tagrhead-item, div.tagrhead-criteria-item {
+    border: 1px solid rgba(0,0,0,.12);
+    border-top: 0px;
+    color: black
+}

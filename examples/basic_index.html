@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./basic.css">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript" src="../dist/Tagrhead.js"></script>
+    <script type="text/javascript">
+      let dataSources = [
+        {
+          itemHeader: 'Celebrities',
+          itemKey: 'id',
+          itemValue: 'name',
+          mode: 'local', // can be 'remote', 'prefetch', will be supported later
+          srchKey: 'name',
+          defaultSuggestions: true,
+          data: [
+            {id: 1, name: 'Chester Bennington'}, {id: 2, name: 'Mike Shinoda'}, {id: 3, name: 'Rob Bourdon'},
+            {id: 4, name: 'Dave Ferell'}, {id: 5, name: 'Brad Delson'}, {id: 6, name: 'Joe Hahn'},
+            {id: 7, name: 'Miley Cyrus'}, {id: 8, name: 'Selena Gomez'}, {id: 9, name: 'Jennifer Lawrence'},
+            {id: 10, name: 'Emma Watson'}, {id: 11, name: 'Chris Martin'}, {id: 12, name: 'Taylor Swift'},
+            {id: 13, name: 'Hayley Williams'}, {id: 14, name: 'Demi Lovato'}, {id: 15, name: 'Steve Aoki'},
+            {id: 16, name: 'Mika'}, {id: 17, name: 'Andy Samburg'}, {id: 18, name: 'Jorma Taccone'},
+            {id: 19, name: 'Akiva Schaffer'}, {id: 20, name: 'Chris Pratt'}, {id: 21, name: 'Amy Poehler'},
+            {id: 22, name: 'Nick Offerman'}, {id: 23, name: 'Rashida Jones'}, {id: 24, name: 'Aubrey Plaza'},
+            {id: 25, name: 'Adam Scott'}, {id: 26, name: 'Rob Lowe'}, {id: 27, name: 'Aziz Ansari'},
+            {id: 28, name: 'Retta'}, {id: 29, name: 'Zach Braff'}, {id: 30, name: 'Sarah Chalke'},
+            {id: 31, name: 'Donald Faison'}, {id: 32, name: 'John C. McGinley'}, {id: 33, name: 'Neil Flynn'},
+            {id: 34, name: 'Judy Reyes'}, {id: 35, name: 'Ken Jenkins'}, {id: 36, name: 'Sam Lloyd'},
+            {id: 37, name: 'Jason Segal'}, {id: 38, name: 'Neil Patrick Harris'}, {id: 39, name: 'Kaley Cucuo'},
+            {id: 40, name: 'Hailee Steinfeld'}, {id: 41, name: 'Keegan-Michael Key'}, {id: 42, name: 'Jordan Peele'},
+            {id: 43, name: 'Cobie Smulders'}, {id: 44, name: 'Josh Radnor'}, {id: 45, name: 'Alyson Hannigan'},
+            {id: 46, name: 'Melissa Fumero'}, {id: 47, name: 'Andre Braugher'}, {id: 48, name: 'Terry Crews'},
+            {id: 49, name: 'Stephanie Beatriz'}, {id: 50, name: 'Chelsea Peretti'}, {id: 51, name: 'Joe Lo Truglio'},
+            {id: 52, name: 'Eminem'}, {id: 53, name: 'Dave Grohl'}, {id: 54, name: 'Justin Timberlake'},
+            {id: 55, name: 'Ed Sheeran'}
+          ]
+        },
+        {
+          itemHeader: 'TV Shows',
+          itemKey: 'id',
+          itemValue: 'show',
+          mode: 'local', // can be 'remote', 'prefetch', will be supported later
+          srchKey: 'show',
+          defaultSuggestions: true,
+          data: [
+            {id: 1, show: 'Rick and Morty'}, {id: 2, show: 'How I Met Your Mother'}, {id: 3, show: 'Unbreakable Kimmy Schimidtt'},
+            {id: 4, show: 'Scrubs'}, {id: 5, show: 'Brooklyn Nine Nine'}, {id: 6, show: 'Parks and Recreation'},
+            {id: 7, show: 'The Office'}, {id: 8, show: 'Making a Murderer'}, {id: 9, show: 'Silicon Valley'},
+            {id: 10, show: 'Hannah Montana'}, {id: 11, show: 'Sonny with a Chance'}, {id: 12, show: '13 Reasons Why'},
+            {id: 13, show: 'The Flash'}, {id: 14, show: 'Arrow'}, {id: 15, show: 'Supergirl'},
+            {id: 16, show: 'Chuck'}, {id: 17, show: 'iZombie'}, {id: 18, show: 'Supernatural'},
+            {id: 19, show: 'Wizards of Waverly Place'}
+          ]
+        },
+        {
+          itemHeader: 'States',
+          itemKey: 'id',
+          itemValue: 'state',
+          mode: 'local', // can be 'remote', 'prefetch', will be supported later
+          srchKey: 'state',
+          defaultSuggestions: true,
+          data: [
+            {id: 1, state: "Alabama"}, {id: 2, state: "Alaska"}, {id: 3, state: "Arizona"},
+            {id: 4, state: "Arkansas"}, {id: 5, state: "California"}, {id: 6, state: "Colorado"},
+            {id: 7, state: "Connecticut"}, {id: 8, state: "Delaware"}, {id: 9, state: "Florida"},
+            {id: 10, state: "Georgia"}, {id: 11, state: "Hawaii"}, {id: 12, state: "Idaho"},
+            {id: 13, state: "Illinois"}, {id: 14, state: "Indiana"}, {id: 15, state: "Iowa"},
+            {id: 16, state: "Kansas"}, {id: 17, state: "Kentucky"}, {id: 18, state: "Louisiana"},
+            {id: 19, state: "Maine"}, {id: 20, state: "Maryland"}, {id: 21, state: "Massachusetts"},
+            {id: 22, state: "Michigan"}, {id: 23, state: "Minnesota"}, {id: 24, state: "Mississippi"},
+            {id: 25, state: "Missouri"}, {id: 26, state: "Montana"}, {id: 27, state: "Nebraska"},
+            {id: 28, state: "Nevada"}, {id: 29, state: "New Hampshire"}, {id: 30, state: "New Mexico"},
+            {id: 31, state: "New York"}, {id: 32, state: "North Carolina"}, {id: 33, state: "North Dakota"},
+            {id: 34, state: "Ohio"}, {id: 35, state: "Oklahoma"}, {id: 36, state: "Oregon"},
+            {id: 37, state: "Pennsylvania"}, {id: 38, state: "Rhode Island"}, {id: 39, state: "South Carolina"},
+            {id: 40, state: "South Dakota"}, {id: 41, state: "Tennessee"}, {id: 42, state: "Texas"},
+            {id: 43, state: "Utah"}, {id: 44, state: "Vermont"}, {id: 45, state: "Virginia"},
+            {id: 46, state: "Washington"}, {id: 47, state: "West Virginia"}, {id: 48, state: "Wisconsin"},
+            {id: 49, state: "Wyoming"}
+          ]
+        },
+
+        {
+          itemHeader: 'Bands',
+          itemKey: 'id',
+          itemValue: 'band',
+          mode: 'local', // can be 'remote', 'prefetch', will be supported later
+          srchKey: 'band',
+          defaultSuggestions: true,
+          data: [
+            {id: 1, band: 'Chvrches'}, {id: 2, band: 'Linkin Park'}, {id: 3, band: 'Green Day'},
+            {id: 4, band: 'Muse'}, {id: 5, band: 'Sum 41'}, {id: 6, band: 'Death Cab For Cutie'},
+            {id: 7, band: 'Twenty One Pilots'}, {id: 8, band: 'Oasis'}, {id: 9, band: 'Beatles'},
+            {id: 10, band: 'Gorillaz'}, {id: 11, band: 'Radiohead'}, {id: 12, band: 'Coldplay'},
+            {id: 13, band: 'Evanescence'}, {id: 14, band: 'Fall Out Boy'}, {id: 15, band: 'Fort Minor'},
+            {id: 16, band: 'Florence + The Machine'}, {id: 17, band: 'Foo Fighters'}, {id: 18, band: 'The Glitch Mob'},
+            {id: 19, band: 'Daft Punk'}, {id: 20, band: 'Clean Bandit'}, {id: 21, band: 'AWOLNATION'},
+            {id: 22, band: 'Bon Jovi'}, {id: 23, band: 'Arcade Fire'}, {id: 24, band: 'Avenged Sevenfold'},
+            {id: 25, band: 'Aerosmith'}, {id: 26, band: 'AC/DC'}, {id: 27, band: 'HaleStorm'},
+            {id: 28, band: 'Straight Outta Compton'}, {id: 29, band: 'Lady Antebellum'}, {id: 30, state: 'M83'}
+          ]
+        }
+      ]
+      window.onload = () => {
+        console.log(Tagrhead)
+          var textbox = new Tagrhead(
+            'tagrhead-input',
+            'tagrhead-container',
+            dataSources,
+            {
+              manual: false,
+              wrap: true,
+            });
+      }
+    </script>
+    <p>
+      <div id="tagrhead-container">
+        <input id="tagrhead-input" type="text" name="" value="">
+      </div>
+    </p>
+  </body>
+</html>
