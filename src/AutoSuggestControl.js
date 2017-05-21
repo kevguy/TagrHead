@@ -147,10 +147,15 @@ export default class AutoSuggestControl {
       if (event.type === 'mousedown') {
         this.textbox.value = target.firstChild.nodeValue + ':'
         this.hideCriteriaLayer()
+        console.log(this.textbox.value)
+        this.textbox.focus()
+        this.prefix = this.textbox.value.substring(0, this.textbox.value.indexOf(':'))
+        this.provider.requestSuggestions(this, false)
+        this.textbox.click()
       } else if (event.type === 'mouseover' && !target.classList.contains('tagrhead-criteria-header')) {
         this.highlightCriteria(target)
       } else {
-        this.textbox.focus()
+
       }
     }
     // document.body.appendChild(this.criteriaLayer)
@@ -159,7 +164,6 @@ export default class AutoSuggestControl {
 
   hideCriteriaLayer () {
     this.criteriaLayer.style.visibility = 'hidden'
-    this.textbox.focus()
   }
 
   showCriteriaLayer () {
@@ -493,7 +497,10 @@ export default class AutoSuggestControl {
         this.showCriteriaLayer()
       } else {
         this.mode = 'suggestions'
+        console.log('happen')
         this.hideCriteriaLayer()
+        this.prefix = this.textbox.value.substring(0, this.textbox.value.indexOf(':'))
+        this.provider.requestSuggestions(self, false)
       }
     }
 
@@ -509,13 +516,16 @@ export default class AutoSuggestControl {
     // assign onblur event handler (hides suggestions)
     this.textbox.onblur = () => {
       console.log('blur')
-      self.hideDropDownLayer()
-      self.hideCriteriaLayer()
 
-      if (this.style === 'mdl') {
-        if (document.querySelector('.devsite-search-form')) {
-          if (this.getTags().length === 0 && this.textbox.value === '') {
-            document.querySelector('.devsite-search-form').classList.remove('devsite-search-active')
+      if (this.textbox.value.indexOf(':') < 0) {
+        self.hideDropDownLayer()
+        self.hideCriteriaLayer()
+
+        if (this.style === 'mdl') {
+          if (document.querySelector('.devsite-search-form')) {
+            if (this.getTags().length === 0 && this.textbox.value === '') {
+              document.querySelector('.devsite-search-form').classList.remove('devsite-search-active')
+            }
           }
         }
       }

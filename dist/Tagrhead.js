@@ -265,11 +265,14 @@ var AutoSuggestControl = function () {
         if (event.type === 'mousedown') {
           _this2.textbox.value = target.firstChild.nodeValue + ':';
           _this2.hideCriteriaLayer();
+          console.log(_this2.textbox.value);
+          _this2.textbox.focus();
+          _this2.prefix = _this2.textbox.value.substring(0, _this2.textbox.value.indexOf(':'));
+          _this2.provider.requestSuggestions(_this2, false);
+          _this2.textbox.click();
         } else if (event.type === 'mouseover' && !target.classList.contains('tagrhead-criteria-header')) {
           _this2.highlightCriteria(target);
-        } else {
-          _this2.textbox.focus();
-        }
+        } else {}
       };
       // document.body.appendChild(this.criteriaLayer)
       this.textbox.parentNode.insertBefore(this.criteriaLayer, this.textbox.nextSibling);
@@ -278,7 +281,6 @@ var AutoSuggestControl = function () {
     key: 'hideCriteriaLayer',
     value: function hideCriteriaLayer() {
       this.criteriaLayer.style.visibility = 'hidden';
-      this.textbox.focus();
     }
   }, {
     key: 'showCriteriaLayer',
@@ -653,7 +655,10 @@ var AutoSuggestControl = function () {
           _this6.showCriteriaLayer();
         } else {
           _this6.mode = 'suggestions';
+          console.log('happen');
           _this6.hideCriteriaLayer();
+          _this6.prefix = _this6.textbox.value.substring(0, _this6.textbox.value.indexOf(':'));
+          _this6.provider.requestSuggestions(self, false);
         }
       };
 
@@ -669,13 +674,16 @@ var AutoSuggestControl = function () {
       // assign onblur event handler (hides suggestions)
       this.textbox.onblur = function () {
         console.log('blur');
-        self.hideDropDownLayer();
-        self.hideCriteriaLayer();
 
-        if (_this6.style === 'mdl') {
-          if (document.querySelector('.devsite-search-form')) {
-            if (_this6.getTags().length === 0 && _this6.textbox.value === '') {
-              document.querySelector('.devsite-search-form').classList.remove('devsite-search-active');
+        if (_this6.textbox.value.indexOf(':') < 0) {
+          self.hideDropDownLayer();
+          self.hideCriteriaLayer();
+
+          if (_this6.style === 'mdl') {
+            if (document.querySelector('.devsite-search-form')) {
+              if (_this6.getTags().length === 0 && _this6.textbox.value === '') {
+                document.querySelector('.devsite-search-form').classList.remove('devsite-search-active');
+              }
             }
           }
         }
@@ -766,7 +774,8 @@ var SuggestionProvider = function () {
           srchResults = undefined;
           if (query === '') {
             // return random elements form dataSource
-            return [];
+            console.log('here');
+            return dataSource.data.slice(0, 4);
           }
           // srchresults are passed into the sync callback
           // engine.search returns the bloodhound object
@@ -807,6 +816,9 @@ var SuggestionProvider = function () {
     key: 'requestSuggestions',
     value: function requestSuggestions(autoSuggestControl, typeAhead) {
       var suggestions = [];
+
+      console.log(autoSuggestControl);
+      console.log(autoSuggestControl.textbox);
       var textboxValue = autoSuggestControl.textbox.value;
       var prefix = autoSuggestControl.prefix;
 
@@ -819,9 +831,29 @@ var SuggestionProvider = function () {
       console.log('textboxValue');
       console.log(textboxValue);
 
-      if (textboxValue.length > 0) {
-        if (prefix === '') {
-          this.bloodHoundsData.forEach(function (dataset) {
+      // if (textboxValue.length > 0) {
+      if (prefix === '') {
+        this.bloodHoundsData.forEach(function (dataset) {
+          var results = dataset.search(textboxValue);
+
+          results = results.map(function (item) {
+            return {
+              itemKey: item[dataset.itemKey],
+              itemValue: item[dataset.itemValue]
+            };
+          });
+
+          if (results.length > 0) {
+            suggestions.push({
+              name: dataset.itemHeader,
+              results: results
+            });
+          }
+        });
+      } else {
+        this.bloodHoundsData.forEach(function (dataset) {
+          if (dataset.itemHeader === prefix) {
+            console.log('answer me');
             var results = dataset.search(textboxValue);
 
             results = results.map(function (item) {
@@ -837,29 +869,10 @@ var SuggestionProvider = function () {
                 results: results
               });
             }
-          });
-        } else {
-          this.bloodHoundsData.forEach(function (dataset) {
-            if (dataset.itemHeader === prefix) {
-              var results = dataset.search(textboxValue);
-
-              results = results.map(function (item) {
-                return {
-                  itemKey: item[dataset.itemKey],
-                  itemValue: item[dataset.itemValue]
-                };
-              });
-
-              if (results.length > 0) {
-                suggestions.push({
-                  name: dataset.itemHeader,
-                  results: results
-                });
-              }
-            }
-          });
-        }
+          }
+        });
       }
+      // }
       autoSuggestControl.autosuggest(suggestions, typeAhead);
     }
   }]);

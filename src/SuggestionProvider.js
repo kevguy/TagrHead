@@ -44,7 +44,8 @@ export default class SuggestionProvider {
         srchResults = undefined
         if (query === '') {
           // return random elements form dataSource
-          return []
+          console.log('here')
+          return dataSource.data.slice(0, 4)
         }
         // srchresults are passed into the sync callback
         // engine.search returns the bloodhound object
@@ -76,6 +77,9 @@ export default class SuggestionProvider {
 
   requestSuggestions (autoSuggestControl, typeAhead) {
     let suggestions = []
+
+    console.log(autoSuggestControl)
+    console.log(autoSuggestControl.textbox)
     let textboxValue = autoSuggestControl.textbox.value
     let prefix = autoSuggestControl.prefix
 
@@ -88,9 +92,29 @@ export default class SuggestionProvider {
     console.log('textboxValue')
     console.log(textboxValue)
 
-    if (textboxValue.length > 0) {
-      if (prefix === '') {
-        this.bloodHoundsData.forEach(dataset => {
+    // if (textboxValue.length > 0) {
+    if (prefix === '') {
+      this.bloodHoundsData.forEach(dataset => {
+        let results = dataset.search(textboxValue)
+
+        results = results.map((item) => {
+          return {
+            itemKey: item[dataset.itemKey],
+            itemValue: item[dataset.itemValue]
+          }
+        })
+
+        if (results.length > 0) {
+          suggestions.push({
+            name: dataset.itemHeader,
+            results
+          })
+        }
+      })
+    } else {
+      this.bloodHoundsData.forEach(dataset => {
+        if (dataset.itemHeader === prefix) {
+          console.log('answer me')
           let results = dataset.search(textboxValue)
 
           results = results.map((item) => {
@@ -106,29 +130,10 @@ export default class SuggestionProvider {
               results
             })
           }
-        })
-      } else {
-        this.bloodHoundsData.forEach(dataset => {
-          if (dataset.itemHeader === prefix) {
-            let results = dataset.search(textboxValue)
-
-            results = results.map((item) => {
-              return {
-                itemKey: item[dataset.itemKey],
-                itemValue: item[dataset.itemValue]
-              }
-            })
-
-            if (results.length > 0) {
-              suggestions.push({
-                name: dataset.itemHeader,
-                results
-              })
-            }
-          }
-        })
-      }
+        }
+      })
     }
+    // }
     autoSuggestControl.autosuggest(suggestions, typeAhead)
   }
 }
