@@ -1,6 +1,6 @@
 {
   "name": "tagrhead",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A search bar with autosuggestions and tags support",
   "main": "dist/Tagrhead.js",
   "devDependencies": {
