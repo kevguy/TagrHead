@@ -15,23 +15,15 @@ let plugins = [
     disable: false,
     allChunks: true
   })
-], outputFile, cssLoaderStr, scssLoaderStr;
+], externals = {}, outputFile, cssLoaderStr, scssLoaderStr;
 
-if (env === 'build') {
+if (env === 'build' || env === 'bundle') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
-  // outputFile = libraryName + '.min.js';
-  outputFile = '.min.js';
   cssLoaderStr = 'css-loader?sourceMap&minimize';
   scssLoaderStr = 'sass-loader?sourceMap';
 
-} else if (env === 'bundle') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = '.bundle.js';
-  cssLoaderStr = 'css-loader?sourceMap&minimize';
-  scssLoaderStr = 'sass-loader?sourceMap';
-
+  outputFile = env === 'build' ? '.min.js' : '.bundle.min.js';
 } else {
-  // outputFile = libraryName + '.js';
   outputFile = '.js';
   cssLoaderStr = 'css-loader';
   scssLoaderStr = 'sass-loader';
