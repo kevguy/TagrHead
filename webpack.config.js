@@ -7,8 +7,7 @@ const env  = require('yargs').argv.env; // use --env with webpack 2
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// let libraryName = 'Tagrhead';
-let libraryName = '';
+let libraryName = 'Tagrhead';
 
 let plugins = [
   new ExtractTextPlugin({
@@ -16,13 +15,26 @@ let plugins = [
     disable: false,
     allChunks: true
   })
-], outputFile;
+], outputFile, cssLoaderStr, scssLoaderStr;
 
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.min.js';
+  // outputFile = libraryName + '.min.js';
+  outputFile = '.min.js';
+  cssLoaderStr = 'css-loader?sourceMap&minimize';
+  scssLoaderStr = 'sass-loader?sourceMap';
+
+} else if (env === 'bundle') {
+  plugins.push(new UglifyJsPlugin({ minimize: true }));
+  outputFile = '.bundle.js';
+  cssLoaderStr = 'css-loader?sourceMap&minimize';
+  scssLoaderStr = 'sass-loader?sourceMap';
+
 } else {
-  outputFile = libraryName + '.js';
+  // outputFile = libraryName + '.js';
+  outputFile = '.js';
+  cssLoaderStr = 'css-loader';
+  scssLoaderStr = 'sass-loader';
 }
 
 const config = {
@@ -36,8 +48,7 @@ const config = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name]' + outputFile,
-    // library: libraryName,
-    library: 'Tagrhead',
+    library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
@@ -63,7 +74,7 @@ const config = {
       {
         test: /\.scss$|\.css$/,
         use: ExtractTextPlugin.extract({
-          use: ['css-loader?sourceMap&minimize', 'sass-loader?sourceMap'],
+          use: [cssLoaderStr, scssLoaderStr],
           fallback: 'style-loader',
           publicPath: 'dist'
         })
@@ -76,5 +87,11 @@ const config = {
   // },
   plugins: plugins
 };
+
+if (env !== 'build') {
+  config.externals = {
+    jquery: 'jQuery'
+  }
+}
 
 module.exports = config;
