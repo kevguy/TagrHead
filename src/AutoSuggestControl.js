@@ -20,6 +20,14 @@ export default class AutoSuggestControl {
     return this.tagsCtrl.getTags()
   }
 
+  clearTags () {
+    this.tagsCtrl.clearTags()
+  }
+
+  addTags (data) {
+    this.tagsCtrl.addTags(data)
+  }
+
   /**
    * Autosuggests one or more suggestions for what the user has typed.
    * If no suggestions are passed in, then no autosuggest occurs.
@@ -96,13 +104,8 @@ export default class AutoSuggestControl {
   getLeft () {
     let node
 
-    console.log('wrap value')
-    console.log(this.wrap)
     if (this.wrap === true) {
-      console.log('wrap')
       node = this.container
-      console.log(this.container)
-      console.log(this.container.offsetLeft)
     } else {
       node = this.textbox
     }
@@ -149,7 +152,6 @@ export default class AutoSuggestControl {
       if (event.type === 'mousedown') {
         this.textbox.value = target.firstChild.nodeValue + ':'
         this.hideCriteriaLayer()
-        console.log(this.textbox.value)
         this.textbox.focus()
         this.prefix = this.textbox.value.substring(0, this.textbox.value.indexOf(':'))
         this.provider.requestSuggestions(this, false)
@@ -169,10 +171,8 @@ export default class AutoSuggestControl {
   }
 
   showCriteriaLayer () {
-    console.log('showCriteria')
     let suggestions = this.provider.requestHeaders()
 
-    console.log(suggestions)
     this.criteriaLayer.innerHTML = '' // clear contents of the layer
     let div = null
 
@@ -340,7 +340,6 @@ export default class AutoSuggestControl {
           this.highlightNextSuggestion()
           break
         case 13: // enter
-          console.log(this.tag)
           this.tagsCtrl.addTags(this.tag)
           this.hideDropDownLayer()
           break
@@ -351,7 +350,6 @@ export default class AutoSuggestControl {
           this.highlightPreviousCriteria()
           break
         case 40: // down arrow
-          console.log('going down')
           this.highlightNextCriteria()
           break
         case 13: // enter
@@ -362,7 +360,6 @@ export default class AutoSuggestControl {
 
             if (node.classList.contains('tagrhead-criteria-current')) {
               this.textbox.value = node.getAttribute('data-criteria') + ':'
-              console.log('hihi')
             }
           }
 
@@ -464,7 +461,6 @@ export default class AutoSuggestControl {
           value: node.getAttribute('data-value'),
           header: node.getAttribute('data-header')
         }
-        console.log(this.tag)
       } else if (node.classList.contains('tagrhead-current')) {
         node.classList.remove('tagrhead-current')
         // node.className = ""
@@ -502,13 +498,10 @@ export default class AutoSuggestControl {
     }
 
     this.textbox.onfocus = () => {
-      console.log('textbox focus')
       if (this.textbox.value === '') {
-        console.log('show criteria')
         this.mode = 'criteria'
 
         if (this.style === 'mdl') {
-          console.log('falling')
           if (document.querySelector('.devsite-search-form')) {
             document.querySelector('.devsite-search-form').classList.add('devsite-search-active')
           }
@@ -517,7 +510,6 @@ export default class AutoSuggestControl {
         this.showCriteriaLayer()
       } else {
         this.mode = 'suggestions'
-        console.log('happen')
         this.hideCriteriaLayer()
         this.prefix = this.textbox.value.substring(0, this.textbox.value.indexOf(':'))
         this.provider.requestSuggestions(self, false)
@@ -525,7 +517,6 @@ export default class AutoSuggestControl {
     }
 
     this.textbox.onchange = () => {
-      console.log('boy')
       if (this.textbox.value.indexOf(':') > 0) {
         this.prefix = this.textbox.value.substring(0, this.textbox.value.indexOf(':'))
       } else {
@@ -535,7 +526,6 @@ export default class AutoSuggestControl {
 
     // assign onblur event handler (hides suggestions)
     this.textbox.onblur = () => {
-      console.log('blur')
 
       if (this.textbox.value.indexOf(':') < 0) {
         self.hideDropDownLayer()

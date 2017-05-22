@@ -44,8 +44,10 @@ export default class SuggestionProvider {
         srchResults = undefined
         if (query === '') {
           // return random elements form dataSource
-          console.log('here')
-          return dataSource.data.slice(0, 4)
+          if (dataSource.defaultSuggestions === true) {
+            return dataSource.data.slice(0, 4)
+          }
+          return []
         }
         // srchresults are passed into the sync callback
         // engine.search returns the bloodhound object
@@ -66,31 +68,23 @@ export default class SuggestionProvider {
     })
 
     Promise.all(bloodhounds)
-      .then(() => {console.log('bloodhounds ready to go')})
+      .then(() => {/* console.log('bloodhounds ready to go') */})
       .catch((err) => {console.error('error', err)})
   }
 
   requestHeaders () {
-    console.log(this.bloodHoundsData)
     return this.bloodHoundsData.map((dataSource) => dataSource.itemHeader)
   }
 
   requestSuggestions (autoSuggestControl, typeAhead) {
     let suggestions = []
 
-    console.log(autoSuggestControl)
-    console.log(autoSuggestControl.textbox)
     let textboxValue = autoSuggestControl.textbox.value
     let prefix = autoSuggestControl.prefix
 
     if (prefix !== '') {
       textboxValue = textboxValue.substring(prefix.length + 1, textboxValue.length)
     }
-
-    console.log('prefix')
-    console.log(prefix)
-    console.log('textboxValue')
-    console.log(textboxValue)
 
     // if (textboxValue.length > 0) {
     if (prefix === '') {
@@ -114,7 +108,6 @@ export default class SuggestionProvider {
     } else {
       this.bloodHoundsData.forEach(dataset => {
         if (dataset.itemHeader === prefix) {
-          console.log('answer me')
           let results = dataset.search(textboxValue)
 
           results = results.map((item) => {

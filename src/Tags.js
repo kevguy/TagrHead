@@ -124,12 +124,10 @@ export default class Tags {
       this.tagsArr.splice(index, 1)
     }
     this.textbox.focus()
-    console.log(this.tagsArr)
   }
 
   backHandler (event) {
     this.isPressed = false
-    console.log(this.tagsArr)
   }
 
   keyHandler (event) {
@@ -163,7 +161,6 @@ export default class Tags {
         }
       }
     }
-    console.log(this.tagsArr)
   }
 
   createBasicTag (value, key, header) {

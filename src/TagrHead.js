@@ -15,4 +15,12 @@ export default class Tagrhead {
   getTags () {
     return this.textbox.getTags()
   }
+
+  clearTags () {
+    this.textbox.clearTags()
+  }
+
+  addTags (data) {
+    this.textbox.addTags(data)
+  }
 }
