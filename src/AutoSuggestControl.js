@@ -11,7 +11,11 @@ export default class AutoSuggestControl {
     this.tag = null
     this.mode = 'criteria'
     this.style = config.style
-    this.wrap = true
+    if (config.wrap) {
+      this.wrap = config.wrap
+    } else {
+      this.wrap = true
+    }
     this.container = container
     this.init()
   }
