@@ -1,7 +1,7 @@
 {
   "name": "tagrhead",
-  "description": "A search bar with tags support integrated with typeahead",
-  "main": "lib/Tagrhead.js",
+  "description": "A search bar with autosuggestions and tags support",
+  "main": "dist/Tagrhead.js",
   "authors": [
     "Kev Lai"
   ],
