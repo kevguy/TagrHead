@@ -5,7 +5,7 @@
   }
 }
 
-.devsite-search-form {
+.tagrhead-mdl-search-form {
 
   div.tagrhead-tags-container {
     display: flex;
@@ -18,7 +18,7 @@
   div.tagrhead-suggestions, div.tagrhead-criterias {
       width: 100%;
       position: absolute;
-      border: 1px solid rgba(0,0,0,.12);
+      // border: 1px solid rgba(0,0,0,.12);
       border-bottom: 0px;
       border-collapse: collapse;
       white-space: nowrap;
@@ -84,12 +84,12 @@
     transition: color 0.2s;
   }
 
-  .devsite-searchbox {
+  .tagrhead-mdl-searchbox {
     position: relative;
     width: 100%;
   }
 
-  .devsite-search-image {
+  .tagrhead-mdl-search-image {
     color: #757575;
     /*left: 24px;*/
     margin-left: 24px;
@@ -101,7 +101,7 @@
     }
   }
 
-  input.devsite-search-field {
+  input.tagrhead-mdl-search-field {
     background: 0;
     border: 0;
     border-radius: 2px;
@@ -123,21 +123,21 @@
     }
   }
 
-  .devsite-search-button {
+  .tagrhead-mdl-search-button {
     margin: 12px 0;
     &::before {
       content: "search";
     }
   }
 
-  .devsite-responsive-search-open .devsite-search-button {
+  .tagrhead-mdl-responsive-search-open .tagrhead-mdl-search-button {
     margin: 12px 0 12px 16px;
     &::before {
       content: "cancel";
     }
   }
 
-  &.devsite-search-active {
+  &.tagrhead-mdl-search-active {
       -ms-flex: 1 0 auto;
       flex: 100 0 auto;
       background: #f7f7f7;
@@ -146,33 +146,33 @@
         color: #757575;
       }
 
-    .devsite-search-image {
+    .tagrhead-mdl-search-image {
       color: #757575;
     }
 
-    .devsite-search-field {
+    .tagrhead-mdl-search-field {
       color: #212121;
     }
   }
 }
 
 @media screen and (max-width: 720px) {
-  // .devsite-search-form {
-    .devsite-search-button {
+  // .tagrhead-mdl-search-form {
+    .tagrhead-mdl-search-button {
       display: inline-block;
     }
-    .devsite-responsive-search-open {
-      .devsite-search-form {
+    .tagrhead-mdl-responsive-search-open {
+      .tagrhead-mdl-search-form {
         display: inline-block;
         -ms-flex: 1 1 auto;
         flex: 1 1 auto;
         margin: 6px 0;
       }
-      .devsite-header-upper-tabs, .devsite-product-name-wrapper, .devsite-settings-menu-wrapper, .devsite-user-avatar, .devsite-user-signin {
+      .tagrhead-mdl-header-upper-tabs, .tagrhead-mdl-product-name-wrapper, .tagrhead-mdl-settings-menu-wrapper, .tagrhead-mdl-user-avatar, .tagrhead-mdl-user-signin {
         display: none;
       }
     }
-    .devsite-search-form {
+    .tagrhead-mdl-search-form {
       // display: none;
     }
   // }

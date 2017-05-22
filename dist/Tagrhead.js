@@ -662,8 +662,8 @@ var AutoSuggestControl = function () {
           _this6.mode = 'criteria';
 
           if (_this6.style === 'mdl') {
-            if (document.querySelector('.devsite-search-form')) {
-              document.querySelector('.devsite-search-form').classList.add('devsite-search-active');
+            if (document.querySelector('.tagrhead-mdl-search-form')) {
+              document.querySelector('.tagrhead-mdl-search-form').classList.add('tagrhead-mdl-search-active');
             }
           }
 
@@ -692,9 +692,9 @@ var AutoSuggestControl = function () {
           self.hideCriteriaLayer();
 
           if (_this6.style === 'mdl') {
-            if (document.querySelector('.devsite-search-form')) {
+            if (document.querySelector('.tagrhead-mdl-search-form')) {
               if (_this6.getTags().length === 0 && _this6.textbox.value === '') {
-                document.querySelector('.devsite-search-form').classList.remove('devsite-search-active');
+                document.querySelector('.tagrhead-mdl-search-form').classList.remove('tagrhead-mdl-search-active');
               }
             }
           }

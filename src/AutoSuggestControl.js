@@ -502,8 +502,8 @@ export default class AutoSuggestControl {
         this.mode = 'criteria'
 
         if (this.style === 'mdl') {
-          if (document.querySelector('.devsite-search-form')) {
-            document.querySelector('.devsite-search-form').classList.add('devsite-search-active')
+          if (document.querySelector('.tagrhead-mdl-search-form')) {
+            document.querySelector('.tagrhead-mdl-search-form').classList.add('tagrhead-mdl-search-active')
           }
         }
 
@@ -532,9 +532,9 @@ export default class AutoSuggestControl {
         self.hideCriteriaLayer()
 
         if (this.style === 'mdl') {
-          if (document.querySelector('.devsite-search-form')) {
+          if (document.querySelector('.tagrhead-mdl-search-form')) {
             if (this.getTags().length === 0 && this.textbox.value === '') {
-              document.querySelector('.devsite-search-form').classList.remove('devsite-search-active')
+              document.querySelector('.tagrhead-mdl-search-form').classList.remove('tagrhead-mdl-search-active')
             }
           }
         }
