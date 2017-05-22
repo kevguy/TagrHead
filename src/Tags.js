@@ -64,6 +64,8 @@ export default class Tags {
 
     if (config.style === 'mdl') {
       this.createTag = this.createMdlTag
+    } else if (config.style === 'bootstrap-material-design') {
+      this.createTag = this.createBootstrapMdTag
     } else {
       this.createTag = this.createBasicTag
     }
@@ -196,6 +198,28 @@ export default class Tags {
                       '<i class="tagrhead-tag__remove material-icons">cancel</i>' +
                      '</button>' +
                    '</span>'
+    })
+
+    return tag
+  }
+
+  createBootstrapMdTag (value, key, header) {
+    // <a href="javascript:void(0)" class="btn btn-primary">Primary<span class="badge">42</span></a>
+
+    key = key || value
+    header = header || value
+
+    let tag = _create('div', {
+      'className': 'tagrhead-tag',
+      'innerHTML': '<a class="tagrhead-tag__value btn btn-info" href="javascript:void(0)"' +
+                      'data-key="' + key +
+                      '" data-value="' + value +
+                      '" data-header="' + header + '" >' +
+                     header + '-' + value +
+                     '<span class="tagrhead-tag__remove badge">' +
+                      'x' +
+                     '</span>' +
+                   '</a>'
     })
 
     return tag

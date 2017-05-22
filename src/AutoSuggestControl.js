@@ -101,6 +101,8 @@ export default class AutoSuggestControl {
     if (this.wrap === true) {
       console.log('wrap')
       node = this.container
+      console.log(this.container)
+      console.log(this.container.offsetLeft)
     } else {
       node = this.textbox
     }
@@ -189,10 +191,19 @@ export default class AutoSuggestControl {
     })
     if (this.style === 'mdl') {
       this.criteriaLayer.style.left = '0px'
+    } else if (this.style === 'bootstrap-material-design') {
+      // this.criteriaLayer.style.left = this.textbox.offsetLeft + 'px'
+      this.criteriaLayer.style.left = '0'
     } else {
       this.criteriaLayer.style.left = this.getLeft() + 'px'
     }
+
     this.criteriaLayer.style.top = (this.getTop() + this.textbox.offsetHeight) + 'px'
+
+    if (this.style === 'bootstrap-material-design') {
+      this.criteriaLayer.style.top = this.textbox.offsetHeight + 14 + 'px'
+    }
+
     this.criteriaLayer.style.visibility = 'visible'
   }
 
@@ -267,10 +278,19 @@ export default class AutoSuggestControl {
 
     if (this.style === 'mdl') {
       this.layer.style.left = '0px'
+    } else if (this.style === 'bootstrap-material-design') {
+      // this.layer.style.left = this.textbox.offsetLeft + 'px'
+      this.layer.style.left = '0'
     } else {
       this.layer.style.left = this.getLeft() + 'px'
     }
     this.layer.style.top = (this.getTop() + this.textbox.offsetHeight) + 'px'
+
+    if (this.style === 'bootstrap-material-design') {
+      // this.layer.style.top = this.textbox.offsetHeight + 14 + 'px'
+      this.layer.style.top = '100%'
+    }
+
     this.layer.style.visibility = 'visible'
   }
 

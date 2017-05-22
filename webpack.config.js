@@ -34,7 +34,8 @@ const config = {
     Tagrhead: './src/Tagrhead.js',
     basic: './src/stylesheets/basic.scss',
     material: './src/stylesheets/material.scss',
-    mdl: './src/stylesheets/mdl.scss'
+    mdl: './src/stylesheets/mdl.scss',
+    bdl: './src/stylesheets/bdl.scss'
   },
   devtool: 'source-map',
   output: {
@@ -80,7 +81,7 @@ const config = {
   plugins: plugins
 };
 
-if (env !== 'build') {
+if (env === 'build') {
   config.externals = {
     jquery: 'jQuery'
   }
