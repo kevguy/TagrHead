@@ -32,8 +32,9 @@ You can also include this library in your project using CDN:
   - bootstrap material design: [https://cdn.jsdelivr.net/npm/tagrhead@2.1.0/dist/stylesheets/tagrhead.bdl.css](https://cdn.jsdelivr.net/npm/tagrhead@2.1.0/dist/stylesheets/tagrhead.mdl.css)
 
 ### Basic Usage
-[Code]:(https://github.com/kevguy/TagrHead/tree/master/examples/basic)
-[Codepen]:(https://codepen.io/kevlai22/pen/VbqZwZ)
+
+- [Sample Code](https://github.com/kevguy/TagrHead/tree/master/examples/basic)
+- [Codepen](https://codepen.io/kevlai22/pen/VbqZwZ)
 
 Give you input element and container a unique id, then initialize Tagrhead with your `dataSource`:
 ```html
@@ -79,9 +80,10 @@ Give you input element and container a unique id, then initialize Tagrhead with 
 </head>
 ```
 ## Material Design Lite
-[Materia Design Lite](https://github.com/google/material-design-lite)
-[Code]:(https://github.com/kevguy/TagrHead/tree/master/examples/material-design-lite)
-[Codepen](https://codepen.io/kevlai22/pen/ZKmqGj)
+
+- [Materia Design Lite](https://github.com/google/material-design-lite)
+- [Sample Code](https://github.com/kevguy/TagrHead/tree/master/examples/material-design-lite)
+- [Codepen](https://codepen.io/kevlai22/pen/ZKmqGj)
 
 ```html
 <head>
@@ -119,9 +121,11 @@ Give you input element and container a unique id, then initialize Tagrhead with 
 ```
 
 ## Bootstrap Material Design
-[Bootstrap Material Design](https://github.com/FezVrasta/bootstrap-material-design)
-[Code]:(https://github.com/kevguy/TagrHead/tree/master/examples/bootstrap-material-design)
-[Codepen](https://codepen.io/kevlai22/pen/rmQEXy)
+
+- [Bootstrap Material Design](https://github.com/FezVrasta/bootstrap-material-design)
+- [Sample Code](https://github.com/kevguy/TagrHead/tree/master/examples/bootstrap-material-design)
+- [Codepen](https://codepen.io/kevlai22/pen/rmQEXy)
+
 ```html
 <head>
   ...
@@ -161,7 +165,7 @@ Give you input element and container a unique id, then initialize Tagrhead with 
   * [`Tagrhead.clearTags()`](#tagrheadcleartags)
   * [`Tagrhead.addTags(data)`](#tagrheadaddtags)
 
-### new new Tagrhead(inputId, containerId, dataSources, config)
+### new Tagrhead(inputId, containerId, dataSources, config)
 The constructor function. It takes the id of the input element, the id of the container, [data sources](#data-sources) and an [config](#tagrhead-config) as its arguments.
 The [config](#tagrhead-config) argument is optional.
 
@@ -230,7 +234,7 @@ When instantiating tagrhead, there are a number of options you can configure.
 * `style` - Tagrhead can add tags that supports both Material Design Lite and Bootstrap Material Design. Specify which `style` you want with `mdl` or `bootstrap-material-design`.
     If none is set, Tagrhead will just create a basic tag.
 
-### Data Source
+### Data Sources
 The data source is an array of data you want Tagrhead to do autosuggestion from with a number of options you can configure.
 
   * `itemHeader` - The header or category name you want to give to the array of data
